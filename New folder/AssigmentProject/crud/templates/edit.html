@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <title>Edit & Update Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+     background-repeat: no-repeat;
+     font-family: Roboto;
+     padding: 50px;
+     height: 100vh;
+    }
+   .container-sm.mt-3.border{
+     background-color: white;
+    }
+    .Header{
+        font-family: 'Roboto', sans-serif;
+         margin-top: 20px;
+         font-size: 40px;
+        }
+        table.table.table-bordered{
+        padding: 10px;
+        text-align: center;
+        border: 10px;
+        }
+</style>
+<body>
+<center>
+    <div class="container-sm mt-3 border">
+    <h1 class="Header">Edit & Update Student Record</h1>
+    <h2>Record of the student </h2>
+    <hr/>
+    <form method="POST" action="/Update/{{crudst.id}}">
+        {% csrf_token %}
+    <table  border="1" class="table table-hover">
+        <tr>
+            <td>Student Name</td>
+            <td><input type="text" name="stname" value="{{crudst.stname}}"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="stemail" value="{{crudst.stemail}}"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" name="staddress" value="{{crudst.staddress}}"></td>
+        </tr>
+        <tr>
+            <td>Mobile</td>
+            <td><input type="text" name="stmobile" value="{{crudst.stmobile}}"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="text" name="stgender" value="{{crudst.stgender}}"></td>
+
+        </tr>
+    </table>
+    <hr/>
+    <input type="submit" value="Update Student Record" class="btn btn-success">  |
+    <a href="{% url 'stdisplay'%}">Home Page</a>
+    {% if messages %}
+    {% for result in messages%}
+    {{result}}
+    {% endfor %}
+    {% endif %}
+    </form>
+        <br>
+    </div>
+</center>
+</body>
+</html>

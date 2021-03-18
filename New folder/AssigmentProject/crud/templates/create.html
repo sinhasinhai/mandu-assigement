@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <title>Create Record</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+     background-image: radial-gradient(circle, #352d58, #814866, #b6736b, #d1ab7c, #d6e8ae);
+     background-repeat: no-repeat;
+     font-family: Roboto;
+     padding: 50px;
+     height: 100vh;
+    }
+    .Header{
+        font-family: 'Roboto', sans-serif;
+         margin-top: 20px;
+         font-size: 40px;
+        }
+        table.table.table-bordered{
+        padding: 10px;
+        text-align: center;
+        border: 10px;
+        }
+        .container-sm.mt-3.border{
+        background-color: white;
+        }
+</style>
+<body>
+<center>
+    <h3 class="Header">Add New Student Record</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="container-sm mt-3 border">
+            <br />
+    <table border="1" class="table table-hover">
+        <tr>
+            <td>Student name</td>
+            <td><input type="text" placeholder="Student name .." name="stname"></td>
+        </tr>
+         <tr>
+            <td>Email</td>
+            <td><input type="text" placeholder="Email .." name="stemail"></td>
+        </tr>
+         <tr>
+            <td>Address</td>
+            <td><input type="text" placeholder="Address .." name="staddress"></td>
+        </tr>
+        <tr>
+            <td>Mobile</td>
+            <td><input type="text" placeholder="Mobile .." name="stmobile"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+            <input type="radio" value="M" name="stgender" group="stgender"> Male |
+            <input type="radio" value="F" name="stgender" group="stgender"> FeMale
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Insert Record" class="btn btn-success" style="margin-bottom: 20px;"/> |
+    <a href="{% url 'stdisplay'%}">Home Page</a>
+        {% if messages %}
+        {% for result in messages %}
+        <b style="color:green;">{{result}}</b>
+        {% endfor %}
+        {% endif %}
+            </div>
+    </form>
+</center>
+</body>
+
+</html>

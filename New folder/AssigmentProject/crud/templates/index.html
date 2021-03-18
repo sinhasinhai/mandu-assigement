@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+    <title>This is index page</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+    body{
+    background-image: radial-gradient(circle, #283547, #356171, #4f908f, #87be9f, #d6e8ae);
+    background-repeat: no-repeat;
+     color: #444;
+  font-family: Roboto;
+  padding: 50px;
+  height: 100vh;
+  display: flex;
+  align-items: center; //cross axis
+  justify-content: center;
+    }
+        .Header{
+        background-color: #D6E8AE;
+        font-family: 'Roboto', sans-serif;
+         margin-top: 20px;
+        }
+        .container-sm.mt-3.border{
+         box-shadow: 5px 10px gray ;
+         background-color: white;
+         border-radius: 2px;
+         position: center;
+         margin-left: 50px;
+         margin-right:50px;
+        }
+        table{
+        margin-bottom: '20px';
+        text-align: center;
+        }
+        a.add{
+        font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <div class="container-sm mt-3 border">
+        <h1 class="Header">CRUD operation</h1>
+    <h2>Django web framework</h2>
+    <hr/>
+    <a href="{% url 'stinsert'%}" class="add">Add Student Record</a>
+        <a href="{% url 'stdelRecord'%}" class="btn btn-warning">Deleted Records</a>
+        <br />
+    <table border="1" class="table table-hover table-responsive" style="margin-top: 4px">
+        <tr>
+            <th scope="col">Student name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Gender</th>
+            <th  scope="col" colspan="2"> Action</th>
+        </tr>
+        {% if crudst %}
+        {% for displayst in crudst%}
+        {% if displayst.status is 1 %}
+        <tr>
+            <td>{{displayst.stname}}</td>
+            <td>{{displayst.stemail}}</td>
+            <td>{{displayst.staddress}}</td>
+            <td>{{displayst.stmobile}}</td>
+            <td>{{displayst.stgender}}</td>
+            <td><a href="/Edit/{{displayst.id}}" class="btn btn-primary">edit</a> </td>
+            <td><a href="/Delete/{{displayst.id}}" class="btn btn-warning" onclick="return confirm('Are You Sure You Want To delete?')" >delete</a> </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">No Records</td>
+        </tr>
+        {% endif %}
+    </table>
+    </div>
+
+</center>
+</body>

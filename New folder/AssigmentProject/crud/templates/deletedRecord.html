@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+    <title>This is Deleted Record page</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+    body{
+    background-image: radial-gradient(circle, #283547, #356171, #4f908f, #87be9f, #d6e8ae);
+    background-repeat: no-repeat;
+     color: #444;
+  font-family: Roboto;
+  padding: 50px;
+  height: 100vh;
+  display: flex;
+  align-items: center; //cross axis
+  justify-content: center;
+    }
+        .Header{
+        background-color: #D6E8AE;
+        font-family: 'Roboto', sans-serif;
+         margin-top: 20px;
+        }
+        .container-sm.mt-3.border{
+         box-shadow: 5px 10px gray ;
+         float: center;
+         margin-left: 40%;
+         margin-right: 50%;
+         background-color: white;
+         border-radius: 2px;
+        }
+        table{
+        margin-bottom: '40px';
+        text-align: center;
+        }
+        a.add{
+        font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <div class="container-sm mt-3 border">
+        <h1 class="Header">CRUD operation</h1>
+    <h2>Django web framework</h2>
+    <hr/>
+    <a class="add" >Deleted Student Record</a>
+    <table border="1" class="table table-hover">
+        <tr>
+            <th scope="col">Student name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Gender</th>
+            <th  scope="col" colspan="2"> Action</th>
+        </tr>
+
+        {% if crudst %}
+        {% for displayst in crudst%}
+        {% if displayst.status is 0 %}
+        <tr>
+            <td>{{displayst.stname}}</td>
+            <td>{{displayst.stemail}}</td>
+            <td>{{displayst.staddress}}</td>
+            <td>{{displayst.stmobile}}</td>
+            <td>{{displayst.stgender}}</td>
+            <td><a href="/retrive/{{displayst.id}}" onclick="return confirm('Are You Sure You Want To Retrive?')" >Retrive</a> </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="6">No Records</td>
+        </tr>
+        {% endif %}
+    </table>
+    </div>
+
+</center>
+</body>
